@@ -393,8 +393,10 @@ export default function App() {
           onClick={() => navigate("Overview")}
           aria-label="Undust overview"
         >
-          undust
-          <Sparkles size={17} />
+          <img src="/art/undust-icon.png" alt="" className="brand-app-icon" />
+          <span>
+            undust<span className="brand-star">✦</span>
+          </span>
         </button>
         <nav aria-label="Main navigation">
           {nav.map(({ name, icon: Icon }) => (
@@ -404,9 +406,12 @@ export default function App() {
               onClick={() => navigate(name)}
               aria-current={page === name ? "page" : undefined}
             >
-              <Icon size={20} />
+              <span
+                className={`nav-icon nav-icon-${name.toLowerCase().replaceAll(" ", "-")}`}
+              >
+                <Icon size={18} />
+              </span>
               <span>{name}</span>
-              {name === "Developer" && <span className="nav-dot" />}
             </button>
           ))}
         </nav>
@@ -420,15 +425,21 @@ export default function App() {
               key={name}
               className={`nav-item ${page === name ? "active" : ""}`}
               onClick={() => navigate(name)}
+              aria-current={page === name ? "page" : undefined}
             >
-              <Icon size={19} />
-              {name}
+              <span className="nav-icon nav-icon-utility">
+                <Icon size={18} />
+              </span>
+              <span>{name}</span>
             </button>
           ))}
           <button className="upgrade-link" onClick={() => setUpgrade(true)}>
-            <Sparkles size={18} />
-            <span>
-              Pro <span className="muted">· $10 once</span>
+            <span className="pro-icon">
+              <Sparkles size={17} />
+            </span>
+            <span className="upgrade-copy">
+              <strong>Undust Pro</strong>
+              <span className="muted">$10 · One-time purchase</span>
             </span>
             <ChevronRight size={15} />
           </button>

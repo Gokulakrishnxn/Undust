@@ -2104,3 +2104,184 @@ html[data-visible="false"] *:before {
 .application-symbol.has-icon .application-fallback {
   display: none;
 }
+
+/* Sidebar component system: compact icon tiles, quiet chrome, clear selection. */
+.sidebar {
+  background: color-mix(in srgb, var(--sidebar) 94%, transparent);
+}
+.wordmark {
+  align-items: center;
+  gap: 10px;
+  margin: 16px 8px 34px;
+  font-size: 25px;
+  letter-spacing: -1.1px;
+}
+.brand-app-icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 6px #06152d26);
+}
+.brand-star {
+  font-size: 13px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px 0 0 3px;
+  color: var(--blue);
+}
+.nav-item {
+  height: 46px;
+  gap: 11px;
+  padding: 0 10px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+.nav-icon {
+  --icon-color: #7fa9e5;
+  width: 29px;
+  height: 29px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 29px;
+  color: var(--icon-color);
+  background: color-mix(in srgb, var(--icon-color) 10%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--icon-color) 12%, transparent);
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+.nav-icon svg {
+  stroke-width: 1.75;
+}
+.nav-icon-cleanup {
+  --icon-color: #6fa8f5;
+}
+.nav-icon-developer {
+  --icon-color: #ab95e5;
+}
+.nav-icon-applications {
+  --icon-color: #7c9be9;
+}
+.nav-icon-large-files {
+  --icon-color: #66b6c4;
+}
+.nav-icon-startup {
+  --icon-color: #70b99d;
+}
+.nav-icon-utility {
+  --icon-color: var(--muted);
+  background: transparent;
+  box-shadow: none;
+}
+.nav-item:hover {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+.nav-item.active {
+  background: linear-gradient(110deg, #4c88e129, #4c88e112);
+  border-color: #80adf02c;
+  box-shadow:
+    0 2px 5px #0612240a,
+    inset 0 1px 0 #ffffff08;
+}
+.nav-item.active::before {
+  display: none;
+}
+.nav-item.active .nav-icon {
+  color: #f5f9ff;
+  background: linear-gradient(145deg, #68a6f3, #3977cb);
+  box-shadow:
+    inset 0 1px 0 #ffffff3d,
+    0 2px 5px #1b548735;
+}
+.nav-item:focus-visible,
+.wordmark:focus-visible,
+.upgrade-link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.sidebar-bottom {
+  padding-top: 36px;
+}
+.sidebar-divider {
+  margin: 0 10px 12px;
+}
+.upgrade-link {
+  gap: 8px;
+  border-radius: 13px;
+  padding: 11px 9px;
+  background: linear-gradient(120deg, #c6d9f20b, #a3c5ff03);
+  border-color: var(--line);
+  text-align: left;
+}
+.pro-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 27px;
+  height: 30px;
+  color: #b89859;
+}
+.upgrade-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.upgrade-copy strong {
+  font-size: 11px;
+  font-weight: 600;
+}
+.upgrade-copy .muted {
+  font-size: 9px;
+  white-space: nowrap;
+  letter-spacing: -0.15px;
+}
+.upgrade-link > svg:last-child {
+  width: 12px;
+}
+.sidebar-footnote {
+  font-size: 9px;
+  letter-spacing: 0.4px;
+  margin-top: 14px;
+}
+html[data-theme="light"] .nav-icon {
+  --icon-color: #537db3;
+}
+html[data-theme="light"] .nav-icon-developer {
+  --icon-color: #8563bd;
+}
+html[data-theme="light"] .nav-icon-large-files {
+  --icon-color: #368795;
+}
+html[data-theme="light"] .nav-icon-startup {
+  --icon-color: #41866d;
+}
+@media (max-width: 850px) {
+  .wordmark {
+    gap: 7px;
+    margin-left: 4px;
+    font-size: 23px;
+  }
+  .brand-app-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .nav-item {
+    padding: 0 7px;
+    gap: 9px;
+  }
+  .upgrade-link {
+    gap: 5px;
+    padding: 10px 6px;
+  }
+  .upgrade-copy .muted {
+    font-size: 8px;
+  }
+}
