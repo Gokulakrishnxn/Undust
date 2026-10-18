@@ -437,14 +437,7 @@ export default function App() {
       </aside>
       <main className="main">
         <div className="titlebar" data-tauri-drag-region>
-          <span className="breadcrumb">
-            Workspace <ChevronRight size={12} /> <b>{page}</b>
-          </span>
           <div className="titlebar-right">
-            <span className={`mode-label ${sample ? "sample" : ""}`}>
-              <span />
-              {sample ? "Sample workspace" : "On-device"}
-            </span>
             <button
               className="icon-button"
               aria-label="About Undust"
@@ -495,9 +488,6 @@ export default function App() {
                           src="/art/glass-hero.png"
                           alt="Sculptural blue glass with a luminous sweeping brush and sparkles"
                         />
-                        <div className="art-caption">
-                          <ShieldCheck size={14} /> Private by design
-                        </div>
                       </div>
                       <div className="hero-copy">
                         <span className="small-label">
@@ -546,13 +536,13 @@ export default function App() {
                               : "Choose folders to scan"}
                           <ArrowRight size={17} />
                         </Button>
-                        <span className="hero-reassurance">
-                          {sample
-                            ? "A guided preview. No real files are changed."
-                            : roots.length
+                        {!sample && (
+                          <span className="hero-reassurance">
+                            {roots.length
                               ? `${roots.length} approved folder${roots.length === 1 ? "" : "s"} · Read-only until you confirm`
                               : "Start with folders you choose. Your files stay private."}
-                        </span>
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="promise-strip">
