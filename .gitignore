@@ -6,3 +6,9 @@ target/
 .env.*
 !.env.example
 *.log
+*.tsbuildinfo
+/test-results/
+/playwright-report/
+/work/
+/src-tauri/gen/
+/Undust.app/

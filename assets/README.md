@@ -11,7 +11,7 @@
 
 ## Shared tokens
 
-[tokens.css](tokens/tokens.css) holds Undust's approved starting palette, spacing, radii, and core timings. It has no dependencies and is not yet wired to an application. Map its custom properties into the chosen shadcn theme when implementing. The current palette covers the approved dark appearance; light mode remains to be designed and validated.
+[tokens.css](tokens/tokens.css) holds Undust's approved starting palette, spacing, radii, and core timings. It has no dependencies and is imported by the application stylesheet. Application component styles are in `src/styles.css`. The application implements dark, light, and system appearance; formal contrast validation remains pending.
 
 ## Integrity and provenance
 
@@ -21,4 +21,4 @@ These are generated Undust concepts created in this project from user-provided s
 
 ## Remaining production work
 
-Create a clean editable wordmark, isolated hero artwork, isolated modal banner, and a validated macOS icon export set. The current PNGs do not establish trademark clearance, production masking, or accessibility compliance. Interface components and icons should be drawn by the implementation rather than cropped from screenshots.
+The initial isolated hero/banner are in `public/art/` and generated macOS icon resources are in `src-tauri/icons/`. Create a clean editable wordmark and validate all artwork and icon sizes for release. The current PNGs do not establish trademark clearance, production masking, or accessibility compliance. Interface components and icons should be drawn by the implementation rather than cropped from screenshots.

@@ -53,7 +53,7 @@ Introduction → scan progress → review summary → detailed file selection �
 1. Load shared tokens and establish readable solid surfaces before decorative effects.
 2. Rebuild navigation, dialog, text, and controls as components; never use the full screenshot as the application UI.
 3. Add the existing brand concepts only where their backgrounds and resolution are appropriate.
-4. Create separate production hero and banner artwork before implementing those parts of the visual. These isolated images are not yet supplied; the UI reference is not a substitute.
+4. Create separate production hero and banner artwork before implementing those parts of the visual. The initial isolated assets now live in `public/art/`; validate their integration against the UI reference.
 5. Add motion after the static interactions and focus behavior work. Honor reduced motion and reduced transparency.
 6. Review against the approved screenshot at the preferred window size, then check minimum window size, long strings, keyboard navigation, and VoiceOver.
 
@@ -67,4 +67,4 @@ Introduction → scan progress → review summary → detailed file selection �
 - Text and control contrast is measured on actual rendered surfaces, including hover and focus states.
 - Production wordmark, background art, and app-icon exports have been reviewed separately from the concept masters.
 
-The repository currently provides the visual target, source concepts, and specifications. It does not yet provide a working interface or completed production asset pack.
+The repository now includes a working React/Tauri interface and isolated artwork in `public/art/`. Brand refinement, measured accessibility review, and production release validation remain open.
