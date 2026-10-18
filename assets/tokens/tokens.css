@@ -1,0 +1,51 @@
+/* Undust dark-theme starting tokens. Validate contrast in the rendered UI. */
+:root {
+  --undust-canvas: #0d1722;
+  --undust-sidebar: #101c29;
+  --undust-atmosphere: #214e87;
+  --undust-dialog: #202225;
+  --undust-control: #30343a;
+  --undust-text: #f4f5f7;
+  --undust-text-secondary: #b8c1cd;
+  --undust-text-muted: #98a5b5;
+  --undust-border: #465362;
+  --undust-focus: #93c5fd;
+  --undust-selection: #4a8fea;
+  --undust-primary: #eeece9;
+  --undust-primary-text: #15191e;
+
+  --undust-space-1: 4px;
+  --undust-space-2: 8px;
+  --undust-space-3: 12px;
+  --undust-space-4: 16px;
+  --undust-space-6: 24px;
+  --undust-space-8: 32px;
+  --undust-space-12: 48px;
+
+  --undust-radius-navigation: 14px;
+  --undust-radius-dialog: 26px;
+  --undust-radius-pill: 999px;
+  --undust-button-height: 44px;
+  --undust-dialog-padding: 28px;
+  --undust-sidebar-width: 232px;
+
+  --undust-duration-control: 100ms;
+  --undust-duration-dialog-enter: 220ms;
+  --undust-duration-dialog-exit: 140ms;
+  --undust-duration-backdrop: 160ms;
+  --undust-duration-navigation: 180ms;
+  --undust-duration-content: 150ms;
+  --undust-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Motion-based transforms must also honor the reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --undust-duration-control: 0ms;
+    --undust-duration-dialog-enter: 0ms;
+    --undust-duration-dialog-exit: 0ms;
+    --undust-duration-backdrop: 0ms;
+    --undust-duration-navigation: 0ms;
+    --undust-duration-content: 0ms;
+  }
+}

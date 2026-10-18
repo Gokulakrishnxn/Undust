@@ -1,5 +1,7 @@
 # Undust design assets
 
+See the root [design direction](../design.md) for implementation guidance and the [asset guide](../assets/README.md) for canonical files and metadata.
+
 ## Approved interface direction
 
 ![Undust cleanup review](undust-interface.png)
@@ -8,13 +10,13 @@ Navy glass background, translucent navigation, charcoal review dialog, icy glass
 
 ## Wordmark concept
 
-![Undust wordmark](undust-wordmark.png)
+![Undust wordmark](../assets/brand/undust-wordmark.png)
 
 Custom rounded lowercase lettering and sparkle motif, generated from a user-supplied stylistic reference. This remains a raster concept, not a final vector trademark. The flowing first letter should receive a legibility pass before release. The approved UI uses a simpler readable wordmark treatment; unify both during production identity work.
 
 ## App icon concept
 
-![Undust app icon](undust-icon.png)
+![Undust app icon](../assets/brand/undust-icon.png)
 
 Blue glass tile, luminous sweep, and small sparkles inspired by the approved interface artwork. Transparent canvas outside the tile; verify actual output alpha and small-size clarity before production. This is a concept PNG, not a signed app asset catalog or ICNS package.
 

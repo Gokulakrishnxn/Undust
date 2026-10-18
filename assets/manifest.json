@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "path_base": "repository root",
+  "assets": [
+    {
+      "path": "assets/brand/undust-icon.png",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "has_alpha_channel": true,
+      "bytes": 1663202,
+      "sha256": "9cf18d317eca9e54477cdf71597ed493ac1cdc600d16c0ad6a9ba0e1ea8ba7cd",
+      "role": "macOS app icon concept",
+      "status": "requires production exports and edge review",
+      "origin": "Generated for Undust from user-directed references"
+    },
+    {
+      "path": "assets/brand/undust-wordmark.png",
+      "width": 1661,
+      "height": 947,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "has_alpha_channel": false,
+      "bytes": 652387,
+      "sha256": "2f77e9d547e188d8b6775fea840850911045dfb2b5097d900ae4a4f1f133b9e7",
+      "role": "wordmark presentation concept",
+      "status": "requires vector and legibility refinement",
+      "origin": "Generated for Undust from user-directed references"
+    },
+    {
+      "path": "design/undust-interface.png",
+      "width": 1586,
+      "height": 992,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "has_alpha_channel": false,
+      "bytes": 1633149,
+      "sha256": "887f3ab2ae1282564f5eed48eaecb2a5df093a60772d931a79410398d8f62576",
+      "role": "approved interface reference",
+      "status": "reference only; fictional sample data",
+      "origin": "Generated for Undust from user-directed references"
+    }
+  ]
+}

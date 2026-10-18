@@ -21,7 +21,7 @@ Build with React, shadcn/ui and Motion, while preserving native macOS window con
 
 ## Design tokens — starting values, validate contrast in implementation
 
-Color: canvas #0D1722; sidebar #101C29; atmospheric blue #214E87; dialog #202225; lifted control #30343A; primary text #F4F5F7; secondary text #B8C1CD; subdued text #98A5B5; border #465362; focus #93C5FD. Primary buttons use warm white #EEECE9 with dark text #15191E. Blue selected navigation uses translucent #4A8FEA over a solid accessible fallback. Semantic warning, error, and success each require an icon and text, not color alone.
+The canonical palette is [tokens.css](../assets/tokens/tokens.css): navy canvas/sidebar, charcoal dialog, warm-white primary action, and a blue selection/focus accent. Apply selection translucency over a solid accessible fallback. Semantic warning, error, and success each require an icon and text, not color alone. Define and validate their tokens when those states are implemented.
 
 Use gradients only for atmospheric backdrop/artwork, never under dense text. Blur is bounded to the modal backdrop or sidebar and must have a solid reduced-transparency alternative. Do not animate large full-window filters continuously.
 

@@ -12,9 +12,11 @@ Product definition and design concept, October 18, 2026. This repository does no
 
 - [Product requirements](prd.md): audience, scope, pricing, safety, technical direction, and launch gates.
 - [Feature specification](feature.md): Free/Pro boundaries, behavior, edge cases, and acceptance criteria.
+- [Design direction](design.md): approved visual target and implementation handoff.
 - [UI/UX and content](docs/ui-ux.md): screens, shadcn components, visual tokens, motion, accessibility, and exact interface copy.
 - [Research and evidence](docs/research.md): public CleanMyMac analysis, sources, REA setup status, and unresolved questions.
-- [Design assets](design/README.md): approved visual direction, wordmark, and icon concept.
+- [Assets](assets/README.md): brand masters, shared tokens, dimensions, and integrity manifest.
+- [Design gallery](design/README.md): interface, wordmark, and icon previews.
 
 ## Proposed implementation
 
