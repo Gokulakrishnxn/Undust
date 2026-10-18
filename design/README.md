@@ -18,7 +18,7 @@ Custom rounded lowercase lettering and sparkle motif, generated from a user-supp
 
 ![Undust app icon](../assets/brand/undust-icon.png)
 
-Blue glass tile, luminous sweep, and small sparkles inspired by the approved interface artwork. Transparent canvas outside the tile; verify actual output alpha and small-size clarity before production. This is a concept PNG, not a signed app asset catalog or ICNS package.
+Blue glass tile, luminous sweep, and small sparkles inspired by the approved interface artwork. Transparent canvas outside the tile; verify actual output alpha and small-size clarity before production. This is the concept master. Generated macOS icon resources are now in `src-tauri/icons/`; they still require a production visual review.
 
 ## Production checklist
 

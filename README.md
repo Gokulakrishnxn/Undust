@@ -2,11 +2,40 @@
 
 **A little less clutter.** A considered Mac cleanup app with useful free tools and a proposed **$10 one-time Pro upgrade**.
 
-![Approved Undust interface direction](design/undust-interface.png)
+![Undust application — implemented cleanup review](docs/screenshots/cleanup-review.png)
 
 ## Project status
 
-Product definition and design concept, October 18, 2026. This repository does not yet contain a runnable app, cleanup engine, payment integration, or installer. Images contain fictional sample data. The blue glass interface direction was approved by the project owner; generated assets are concept masters requiring production refinement.
+A working early desktop build is available in source. The interface follows the approved blue-glass direction and includes ambient motion, a sample cleanup journey, folder scanning, file review, local history/settings, and read-only app inventory. Eligible selected personal files can use an explicit Trash flow; caches remain review-only. Pro checkout and production signing are pending. See the [implementation record](docs/work/desktop-foundation.md) for validation and current limits.
+
+## Run locally
+
+Requires Node.js 22.12+ and npm. Desktop builds additionally require a stable Rust toolchain and Apple Command Line Tools on an Apple silicon Mac.
+
+```sh
+npm ci
+npm run dev
+```
+
+The browser opens a labeled sample workspace at `http://127.0.0.1:1420`. Browser mode never accesses or removes real local files.
+
+```sh
+npm run desktop:dev
+npm run desktop:build
+```
+
+Desktop mode scans folders you select; Settings also offers the sample workspace. The native launcher finds a standard Rust installation without changing your shell settings. Bundles are written under `src-tauri/target/release/bundle/macos/`. Local builds are ad hoc signed and are not a public release.
+
+## Checks
+
+```sh
+npm run build
+npm test
+npm run test:native
+```
+
+Browser tests currently use installed Google Chrome. Install Chrome before running them; `npx playwright install webkit` supplies the optional WebKit engine for additional checks. Native tests use temporary fixture directories and an isolated mutation adapter.
+
 
 ## Start here
 
@@ -20,9 +49,9 @@ Product definition and design concept, October 18, 2026. This repository does no
 - [Assets](assets/README.md): brand masters, shared tokens, dimensions, and integrity manifest.
 - [Design gallery](design/README.md): interface, wordmark, and icon previews.
 
-## Proposed implementation
+## Implementation
 
-React + TypeScript, shadcn/ui, Tailwind CSS, and Motion for the interface; Tauri 2 with a small Rust/macOS service layer for desktop access. This is a proposed architecture, not implemented or benchmarked. Native macOS window controls, menus, file selection, permissions, and Trash behavior should complement the custom interface.
+React + TypeScript, shadcn/ui, Tailwind CSS, and Motion for the interface; Tauri 2 with a small Rust/macOS service layer for desktop access. The initial architecture is implemented; release performance budgets are not yet benchmarked. Native macOS window controls, menus, file selection, permissions, and Trash behavior should complement the custom interface.
 
 ## Product principles
 
@@ -39,4 +68,10 @@ Free and Pro packaging is proposed in the PRD. No checkout is live. End-user ter
 
 ## License
 
-Undust is **proprietary — all rights reserved**, subject to applicable law and the exceptions in [LICENSE](LICENSE). This repository does not grant open-source reuse permission. Third-party material retains its own license, and GitHub's platform permissions remain applicable. The Free/Pro application terms will be provided separately; purchasing the application does not itself grant source-code redistribution rights.
+Undust is **proprietary — all rights reserved**, subject to applicable law and the exceptions in [LICENSE](LICENSE). This repository does not grant open-source reuse permission. See [third-party notices](THIRD_PARTY_NOTICES.md). Third-party material retains its own license, and GitHub's platform permissions remain applicable. The Free/Pro application terms will be provided separately; purchasing the application does not itself grant source-code redistribution rights.
+
+### macOS disk image
+
+Run `npm run desktop:dmg` to create the app and a branded drag-to-Applications installer in `src-tauri/target/release/bundle/dmg/`. Open the `.dmg`, drag Undust to Applications, then open it from Applications. This build targets Apple Silicon and macOS 14 or later.
+
+Local preview builds use ad-hoc signing (`signingIdentity: "-"`). Public distribution still requires replacing this with a Developer ID identity and completing Apple notarization. Do not treat the preview DMG as a notarized release.

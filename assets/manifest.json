@@ -40,6 +40,45 @@
       "role": "approved interface reference",
       "status": "reference only; fictional sample data",
       "origin": "Generated for Undust from user-directed references"
+    },
+    {
+      "path": "public/art/glass-hero.png",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "has_alpha_channel": true,
+      "bytes": 1288578,
+      "sha256": "a3741e85254a2d4eb0fd529c50bf7613f44b5cd5e02bdd943af4a68503d53126",
+      "role": "isolated organic-glass hero artwork",
+      "status": "initial application artwork; production visual review pending",
+      "origin": "Generated for Undust from user-directed references"
+    },
+    {
+      "path": "public/art/glass-banner.png",
+      "width": 2163,
+      "height": 727,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "has_alpha_channel": false,
+      "bytes": 2171029,
+      "sha256": "716fcc481603648bc1ee5f1f61222fb6e03f5d1815aaea0633595abcf2e1ff34",
+      "role": "isolated cleanup-dialog banner",
+      "status": "initial application artwork; production visual review pending",
+      "origin": "Generated for Undust from user-directed references"
+    },
+    {
+      "path": "public/art/undust-icon.png",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "has_alpha_channel": true,
+      "bytes": 1663202,
+      "sha256": "9cf18d317eca9e54477cdf71597ed493ac1cdc600d16c0ad6a9ba0e1ea8ba7cd",
+      "role": "runtime copy of icon concept",
+      "status": "initial application artwork; production visual review pending",
+      "origin": "Generated for Undust from user-directed references"
     }
   ]
 }

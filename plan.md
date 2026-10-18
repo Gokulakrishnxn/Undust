@@ -1,6 +1,6 @@
 # Undust — Design and development plan
 
-Updated: October 18, 2026. Status: planned; application implementation has not started.
+Updated: October 18, 2026. Status: initial implementation in progress. See the [implementation record](docs/work/desktop-foundation.md) for verified behavior and open gates.
 
 ## Outcome
 
@@ -16,8 +16,8 @@ This file defines delivery order and milestone gates. [work.md](work.md) defines
 - [x] UI copy, interaction rules, and accessibility targets documented.
 - [x] Proprietary repository rights notice added.
 - [ ] Production artwork and platform icon exports complete.
-- [ ] Runnable interface prototype complete.
-- [ ] Desktop shell and filesystem engine implemented.
+- [x] Initial interactive cleanup prototype implemented and browser-tested; full screen/state coverage remains open.
+- [x] Initial desktop shell and bounded scanner implemented; production hardening remains open.
 - [ ] Payments, signing, update delivery, and release validation complete.
 
 ## Milestone 1 — Finish the design package
@@ -43,11 +43,11 @@ Deliverable: screen/state map, complete visual references, and reusable assets l
 
 Tasks:
 
-- [ ] U01: Scaffold React + TypeScript, a consistent shadcn primitive family, Tailwind, and Motion; pin dependency versions and document actual run/check commands.
-- [ ] U02: Build the shell, sidebar, reusable buttons, dialogs, selection controls, and typography from shared tokens.
-- [ ] U03: Implement the full cleanup journey with an explicit mock-data provider and deterministic scenario selection.
+- [x] U01: Scaffold React + TypeScript, a consistent shadcn primitive family, Tailwind, and Motion; pin dependency versions and document actual run/check commands.
+- [x] U02: Build the shell, sidebar, reusable buttons, dialogs, selection controls, and typography from shared tokens.
+- [x] U03: Implement the full cleanup journey with an explicit mock-data provider and deterministic scenario selection.
 - [ ] U04: Add each supporting screen from D03 and its loading/empty/error states.
-- [ ] U05: Add short motion transitions after keyboard/focus behavior works; honor reduced motion and reduced transparency.
+- [x] U05: Add short motion transitions after keyboard/focus behavior works; honor reduced motion and reduced transparency.
 - [ ] U06: Validate resizing, keyboard navigation, modal focus return, scrolling, and readable text on the target Mac.
 
 Deliverable: a locally runnable prototype with labeled sample data and a short walkthrough. No filesystem changes or real checkout actions.
@@ -60,9 +60,9 @@ Deliverable: a locally runnable prototype with labeled sample data and a short w
 
 Tasks:
 
-- [ ] E01: Integrate Tauri 2 and native macOS window controls, menus, folder selection, and Settings navigation.
+- [x] E01: Integrate Tauri 2 and native macOS window controls, menus, folder selection, and Settings navigation.
 - [ ] E02: Define typed contracts for scan, candidate, selection, operation, and entitlement using the shared contract in `feature.md`.
-- [ ] E03: Implement read-only enumeration of user-approved roots, exclusions, cancellation, and partial-permission reporting.
+- [x] E03: Implement read-only enumeration of user-approved roots, exclusions, cancellation, and partial-permission reporting.
 - [ ] E04: Add conservative candidate classification with versioned, explicit rules; unsupported files remain unsupported.
 - [ ] E05: Measure scan responsiveness and app resource usage against PRD targets using a fixed fixture and stated hardware/OS.
 - [ ] E06: Prove permission persistence, revoked access, cloud-placeholder skipping, file identity, and Trash API behavior in disposable fixtures. Record the architecture decision and any limits.
@@ -137,4 +137,4 @@ Estimate effort after the M3 spike, when filesystem/permission constraints are k
 
 ## Immediate next action
 
-Start D01–D02: create a screen/state map and preview the detailed review screen alongside the approved summary dialog. Then scaffold U01 and build the clickable cleanup journey. The current request creates this plan; it does not itself start implementation or authorize publishing a release.
+Continue the open tasks in Milestones 1–3, using the implemented cleanup journey as the baseline. Prioritize native scan progress, interrupted-operation recovery, and a validated cleanup adapter. The owner authorized application development; publishing a production release still requires release readiness and owner authorization.
