@@ -30,6 +30,8 @@ CleanMyMac provides a broad reference for scan, review, cleanup, app management,
 
 Pro proposal: one person, two personally owned Macs, transferable activation. Includes v1.x updates; no promise of perpetual future major versions or lifetime support. Price excludes applicable taxes where required. Payment provider, refund policy, licensing terms, and regional pricing remain prelaunch decisions. Core free use needs no account. A signed local entitlement supports offline Pro use after activation; no deletion of access merely because the license server is temporarily unavailable.
 
+Repository licensing decision: proprietary, all rights reserved, as documented in [LICENSE](LICENSE). No open-source reuse permission is granted. Third-party licenses and GitHub platform permissions remain applicable. Separate end-user terms for Free and Pro releases remain a prelaunch requirement.
+
 At $10, avoid ongoing cloud computation, malware intelligence, or expensive hosted storage. Track refunds and support cost before adding recurring obligations. This is a commercial hypothesis, not validated unit economics.
 
 ## 5. Release scope
@@ -108,4 +110,4 @@ Do not imply a timeline until engineering capacity and the scanning spike are kn
 
 Measure locally or with separate opt-in analytics: scan completion, review-to-action conversion, partial-failure rate, restore requests, time to first useful result, Pro conversion, refunds, and support cases. A design target is at least 4 of 5 usability participants completing a reviewed cleanup without assistance; it is not a market-validation result.
 
-Open decisions: final license policy, payment provider, source-code license, trademark availability, supported adapter versions, update mechanism, support/refund commitments, and minimum OS feasibility. Resolve before launch, not by silently expanding scope.
+Open decisions: final end-user license and activation policy, payment provider, trademark availability, supported adapter versions, update mechanism, support/refund commitments, and minimum OS feasibility. Repository source licensing is proprietary; see [LICENSE](LICENSE). Resolve the remaining decisions before launch, not by silently expanding scope.

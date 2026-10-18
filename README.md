@@ -31,4 +31,8 @@ React + TypeScript, shadcn/ui, Tailwind CSS, and Motion for the interface; Tauri
 
 ## Commercial status
 
-Free and Pro packaging is proposed in the PRD. No checkout is live. No open-source license has been selected; public availability alone does not grant a license. Confirm source licensing and third-party notices before distribution.
+Free and Pro packaging is proposed in the PRD. No checkout is live. End-user terms and third-party notices must be finalized before distribution.
+
+## License
+
+Undust is **proprietary — all rights reserved**, subject to applicable law and the exceptions in [LICENSE](LICENSE). This repository does not grant open-source reuse permission. Third-party material retains its own license, and GitHub's platform permissions remain applicable. The Free/Pro application terms will be provided separately; purchasing the application does not itself grant source-code redistribution rights.
