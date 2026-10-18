@@ -10,6 +10,8 @@ Product definition and design concept, October 18, 2026. This repository does no
 
 ## Start here
 
+- [Delivery plan](plan.md): design-to-release milestones, dependencies, and completion gates.
+- [Working workflow](work.md): how each design and development task is implemented, checked, and handed off.
 - [Product requirements](prd.md): audience, scope, pricing, safety, technical direction, and launch gates.
 - [Feature specification](feature.md): Free/Pro boundaries, behavior, edge cases, and acceptance criteria.
 - [Design direction](design.md): approved visual target and implementation handoff.
