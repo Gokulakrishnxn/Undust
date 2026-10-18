@@ -106,6 +106,7 @@ export default function App() {
   const [stage, setStage] = useState(0);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
+  const [appSort, setAppSort] = useState("size");
   const [filter, setFilter] = useState("All items");
   const [inspected, setInspected] = useState<Candidate | null>(null);
   const [entries, setEntries] = useState<HistoryEntry[]>(() =>
@@ -206,6 +207,17 @@ export default function App() {
   }, [notice]);
   useEffect(() => {
     const fn = (event: KeyboardEvent) => {
+      if (document.querySelector('[role="dialog"]')) return;
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "f") {
+        const search = document.querySelector<HTMLInputElement>(
+          '.page input[type="search"]',
+        );
+        if (search) {
+          event.preventDefault();
+          search.focus();
+          search.select();
+        }
+      }
       if (event.metaKey && event.key === ",") {
         event.preventDefault();
         navigate("Settings");
@@ -214,6 +226,13 @@ export default function App() {
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, [busy, result]);
+  const visibleApps = apps
+    .filter((app) =>
+      app.name.toLowerCase().includes(query.trim().toLowerCase()),
+    )
+    .sort((a, b) =>
+      appSort === "name" ? a.name.localeCompare(b.name) : b.bytes - a.bytes,
+    );
   const candidates = result?.candidates ?? [];
   const chosen = selectedItems(candidates, selected);
   const candidateTotal = total(
@@ -596,14 +615,14 @@ export default function App() {
                       for what matters.
                     </h1>
                     <p role="status" aria-live="polite">
-                      {
-                        [
-                          "Preparing your workspace…",
-                          "Checking supported caches…",
-                          "Looking at larger files…",
-                          "Organizing your results…",
-                        ][stage]
-                      }
+                      {sample
+                        ? [
+                            "Preparing your workspace…",
+                            "Checking supported caches…",
+                            "Looking at larger files…",
+                            "Organizing your results…",
+                          ][stage]
+                        : "Checking your selected folders…"}
                     </p>
                     <div className="scan-progress">
                       <span />
@@ -703,6 +722,7 @@ export default function App() {
                       <div className="search-field">
                         <Search size={15} />
                         <input
+                          type="search"
                           aria-label="Search findings"
                           placeholder="Search files…"
                           value={query}
@@ -968,23 +988,35 @@ export default function App() {
               <div className="standard-page">
                 {sectionHeader(
                   "ONLY WHAT YOU NEED",
-                  "Make space for your favorites.",
-                  "A read-only look at your apps. Reviewed removal is coming in Pro.",
+                  "Applications",
+                  "See what’s installed and how much space it uses.",
                 )}
                 <div className="applications-toolbar">
                   <span>
                     {appsLoading
                       ? "Reading application sizes…"
-                      : `${apps.length} ${sample ? "sample " : ""}applications`}
+                      : `${visibleApps.length} ${query ? `of ${apps.length} ` : ""}${sample ? "sample " : ""}applications`}
                   </span>
-                  <div className="search-field">
-                    <Search size={15} />
-                    <input
-                      aria-label="Search applications"
-                      placeholder="Search applications…"
-                      value={query}
-                      onChange={(e) => setQuery(e.target.value)}
-                    />
+                  <div className="application-tools">
+                    <select
+                      className="sort-control"
+                      aria-label="Sort applications"
+                      value={appSort}
+                      onChange={(event) => setAppSort(event.target.value)}
+                    >
+                      <option value="size">Size: largest first</option>
+                      <option value="name">Name: A–Z</option>
+                    </select>
+                    <div className="search-field">
+                      <Search size={15} />
+                      <input
+                        type="search"
+                        aria-label="Search applications"
+                        placeholder="Search applications…"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="list-panel">
@@ -993,42 +1025,58 @@ export default function App() {
                       <LoaderCircle className="spin" size={26} />
                       <p>Inspecting applications. Your files stay unchanged.</p>
                     </div>
+                  ) : !visibleApps.length ? (
+                    <div className="empty-inline" role="status">
+                      <span className="empty-state-icon">
+                        <Search size={25} />
+                      </span>
+                      <h3>
+                        {query
+                          ? "No matching applications"
+                          : "No applications found"}
+                      </h3>
+                      <p>
+                        {query
+                          ? "Try a different name or clear your search."
+                          : "Applications in your Mac’s Applications folders appear here."}
+                      </p>
+                      {query && (
+                        <Button variant="outline" onClick={() => setQuery("")}>
+                          Clear search
+                        </Button>
+                      )}
+                    </div>
                   ) : (
-                    apps
-                      .filter((app) =>
-                        app.name.toLowerCase().includes(query.toLowerCase()),
-                      )
-                      .map((app) => (
-                        <div className="application-row" key={app.id}>
-                          <div
-                            className={`application-symbol ${app.icon ? "has-icon" : ""}`}
-                          >
-                            {app.icon ? (
-                              <img
-                                src={app.icon}
-                                alt=""
-                                className="application-icon"
-                                onError={(event) => {
-                                  event.currentTarget.style.display = "none";
-                                  event.currentTarget.parentElement?.classList.remove(
-                                    "has-icon",
-                                  );
-                                }}
-                              />
-                            ) : null}
-                            <AppWindow
-                              size={24}
-                              className="application-fallback"
+                    visibleApps.map((app) => (
+                      <div className="application-row" key={app.id}>
+                        <div
+                          className={`application-symbol ${app.icon ? "has-icon" : ""}`}
+                        >
+                          {app.icon ? (
+                            <img
+                              src={app.icon}
+                              alt=""
+                              className="application-icon"
+                              onError={(event) => {
+                                event.currentTarget.style.display = "none";
+                                event.currentTarget.parentElement?.classList.remove(
+                                  "has-icon",
+                                );
+                              }}
                             />
-                          </div>
-                          <div>
-                            <h3>{app.name}</h3>
-                            <p>{sample ? "Sample application" : app.path}</p>
-                          </div>
-                          <strong>{size(app.bytes)}</strong>
-                          <span className="tag">INVENTORY</span>
+                          ) : null}
+                          <AppWindow
+                            size={24}
+                            className="application-fallback"
+                          />
                         </div>
-                      ))
+                        <div>
+                          <h3>{app.name}</h3>
+                          <p>{sample ? "Sample application" : app.path}</p>
+                        </div>
+                        <strong>{size(app.bytes)}</strong>
+                      </div>
+                    ))
                   )}
                 </div>
                 <p className="inline-note">
@@ -1198,11 +1246,13 @@ export default function App() {
                         <button
                           aria-label={`${value} theme`}
                           title={`${value} theme`}
+                          aria-pressed={theme === value}
                           key={value}
                           className={theme === value ? "selected" : ""}
                           onClick={() => setTheme(value)}
                         >
                           <Icon size={17} />
+                          <span>{value[0].toUpperCase() + value.slice(1)}</span>
                         </button>
                       ))}
                     </div>

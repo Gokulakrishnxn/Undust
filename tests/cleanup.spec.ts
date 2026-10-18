@@ -51,7 +51,9 @@ test("search, exclusion, themes and minimum-size layout are usable", async ({
   await page.goto("/");
   await page.getByRole("button", { name: "Explore sample scan" }).click();
   await page.getByRole("button", { name: "Review files", exact: true }).click();
-  await page.getByRole("textbox", { name: "Search findings" }).fill("Next.js");
+  await page
+    .getByRole("searchbox", { name: "Search findings" })
+    .fill("Next.js");
   await expect(
     page.getByRole("button", {
       name: "Inspect Next.js build cache",
@@ -97,4 +99,28 @@ test("cancelled sample scan creates no cleanup history", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Your story starts here." }),
   ).toBeVisible();
+});
+
+test("application search, sorting and keyboard focus work together", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Applications", exact: true }).click();
+  await expect(page.locator(".application-row").first()).toContainText(
+    "Visual Studio Code",
+  );
+  await page.getByLabel("Sort applications").selectOption("name");
+  await expect(page.locator(".application-row").first()).toContainText("Figma");
+  await page.keyboard.press("Meta+f");
+  await expect(
+    page.getByRole("searchbox", { name: "Search applications" }),
+  ).toBeFocused();
+  await page
+    .getByRole("searchbox", { name: "Search applications" })
+    .fill("no-such-app");
+  await expect(
+    page.getByText("No matching applications", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Clear search", exact: true }).click();
+  await expect(page.locator(".application-row")).toHaveCount(3);
 });

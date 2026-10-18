@@ -38,3 +38,9 @@ Chrome and WebKit previews were inspected. Implemented [home](../screenshots/cle
 ## Next development slice
 
 Complete real scan progress and interrupted-operation recovery, then validate a single cache adapter with its supported versions and busy-state checks. Keep cache actions review-only until the relevant safety tests and native integration checks pass. Finish application terms and payment-provider decisions before implementing live Pro purchases.
+
+## macOS polish and disk image packaging
+
+Applications now includes native icons, size/name sorting, a result count and a recoverable empty search state. Cmd+F (Ctrl+F in browser environments) focuses an available search field; shortcuts defer to open dialogs. Appearance controls have visible labels and pressed-state semantics. Real scans use an honest indeterminate status. The sidebar uses the approved Undust icon and consistent navigation tiles, and the requested workspace/header reassurance copy is removed.
+
+Run `npm run desktop:dmg` to build the Apple Silicon app and a drag-to-Applications disk image. The Finder window uses the branded background in `assets/installer/`; the SVG is its editable source. The bundle requires macOS 14+. This preview is ad-hoc signed, not Developer ID signed or notarized; packaging is not a public-release approval. Intel builds and public distribution signing remain pending.

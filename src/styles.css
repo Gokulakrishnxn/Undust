@@ -2285,3 +2285,129 @@ html[data-theme="light"] .nav-icon-startup {
     font-size: 8px;
   }
 }
+
+/* macOS-style control sizing and grouped content surfaces. */
+.section-heading h1 {
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+.section-heading p {
+  font-size: 13px;
+  max-width: 550px;
+}
+.application-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sort-control {
+  height: 36px;
+  max-width: 160px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+.sort-control option {
+  background: var(--surface);
+  color: var(--text);
+}
+.sort-control:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.search-field {
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease;
+}
+.search-field:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 12%, transparent);
+}
+.application-row {
+  padding: 17px 20px;
+  transition: background 0.16s ease;
+}
+.application-row:hover {
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+.application-row > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+.application-row h3 {
+  font-weight: 500;
+}
+.application-row p {
+  font-size: 11px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.application-row strong {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.empty-state-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: var(--blue);
+  background: color-mix(in srgb, var(--blue) 9%, transparent);
+  border: 1px solid var(--line);
+}
+.empty-inline h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+.theme-picker {
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+  gap: 2px;
+  padding: 3px;
+}
+.theme-picker button {
+  width: auto;
+  min-width: 70px;
+  gap: 6px;
+  padding: 0 10px;
+  font-size: 11px;
+}
+.theme-picker button.selected {
+  background: var(--surface);
+  box-shadow:
+    0 1px 4px #0000001a,
+    0 0 0 1px var(--line);
+}
+@media (max-width: 1000px) {
+  .applications-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .application-tools {
+    width: 100%;
+  }
+  .application-tools .search-field {
+    max-width: none;
+    flex: 1;
+  }
+  .theme-picker button {
+    min-width: 58px;
+    padding: 0 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .application-row,
+  .search-field {
+    transition: none;
+  }
+}

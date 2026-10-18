@@ -69,3 +69,9 @@ Free and Pro packaging is proposed in the PRD. No checkout is live. End-user ter
 ## License
 
 Undust is **proprietary — all rights reserved**, subject to applicable law and the exceptions in [LICENSE](LICENSE). This repository does not grant open-source reuse permission. See [third-party notices](THIRD_PARTY_NOTICES.md). Third-party material retains its own license, and GitHub's platform permissions remain applicable. The Free/Pro application terms will be provided separately; purchasing the application does not itself grant source-code redistribution rights.
+
+### macOS disk image
+
+Run `npm run desktop:dmg` to create the app and a branded drag-to-Applications installer in `src-tauri/target/release/bundle/dmg/`. Open the `.dmg`, drag Undust to Applications, then open it from Applications. This build targets Apple Silicon and macOS 14 or later.
+
+Local preview builds use ad-hoc signing (`signingIdentity: "-"`). Public distribution still requires replacing this with a Developer ID identity and completing Apple notarization. Do not treat the preview DMG as a notarized release.

@@ -13,7 +13,8 @@
     "desktop:dev": "node scripts/native.mjs tauri dev",
     "desktop:build": "node scripts/native.mjs tauri build --bundles app",
     "test:native": "node scripts/native.mjs test",
-    "format": "prettier --write src tests scripts vite.config.ts playwright.config.ts"
+    "format": "prettier --write src tests scripts vite.config.ts playwright.config.ts",
+    "desktop:dmg": "node scripts/native.mjs tauri build --bundles app,dmg"
   },
   "dependencies": {
     "@tauri-apps/api": "2.12.4",
