@@ -492,8 +492,27 @@ fn open_startup() -> Result<(), String> {
         .map_err(|_| "Open System Settings → General → Login Items & Extensions")?;
     Ok(())
 }
+// Ask macOS for the same bundle icon Finder displays, including asset-catalog icons.
+#[cfg(target_os = "macos")]
+fn application_icon(path: &Path) -> Option<String> {
+    use base64::{engine::general_purpose::STANDARD, Engine};
+    use objc2::AllocAnyThread;
+    use objc2_app_kit::{NSBitmapImageFileType, NSBitmapImageRep, NSWorkspace};
+    use objc2_foundation::{NSDictionary, NSString};
+    objc2::rc::autoreleasepool(|_| {
+        let image = NSWorkspace::sharedWorkspace().iconForFile(&NSString::from_str(path.to_str()?));
+        let tiff = image.TIFFRepresentation()?;
+        let bitmap = NSBitmapImageRep::initWithData(NSBitmapImageRep::alloc(), &tiff)?;
+        // The empty dictionary contains no incorrectly typed property values.
+        let png = unsafe { bitmap.representationUsingType_properties(NSBitmapImageFileType::PNG, &NSDictionary::new()) }?;
+        Some(format!("data:image/png;base64,{}", STANDARD.encode(png.to_vec())))
+    })
+}
+#[cfg(not(target_os = "macos"))]
+fn application_icon(_path: &Path) -> Option<String> { None }
+
 #[derive(Serialize)]
-struct InstalledApp { id: String, name: String, bytes: u64, path: String }
+struct InstalledApp { id: String, name: String, bytes: u64, path: String, icon: Option<String> }
 #[tauri::command]
 async fn list_apps() -> Result<Vec<InstalledApp>, String> {
     tauri::async_runtime::spawn_blocking(|| {
@@ -506,7 +525,7 @@ async fn list_apps() -> Result<Vec<InstalledApp>, String> {
                 let path = entry.path();
                 if path.extension().and_then(|x|x.to_str()) != Some("app") || path.is_symlink() {continue;}
                 let bytes = WalkDir::new(&path).follow_links(false).into_iter().filter_map(Result::ok).filter(|e|e.file_type().is_file()).filter_map(|e|e.metadata().ok()).map(|m|m.len()).sum();
-                apps.push(InstalledApp { id: Uuid::new_v4().to_string(), name: path.file_stem().unwrap_or_default().to_string_lossy().into_owned(), bytes, path: path.to_string_lossy().into_owned() });
+                apps.push(InstalledApp { icon: application_icon(&path), id: Uuid::new_v4().to_string(), name: path.file_stem().unwrap_or_default().to_string_lossy().into_owned(), bytes, path: path.to_string_lossy().into_owned() });
             }
         }
         apps.sort_by(|a,b| b.bytes.cmp(&a.bytes));
@@ -689,5 +708,16 @@ mod tests {
         )
         .is_err());
         assert!(!journal.exists());
+    }
+}
+
+#[cfg(all(test, target_os = "macos"))]
+mod icon_tests {
+    #[test]
+    fn finder_icon_is_a_png_data_url() {
+        use base64::{engine::general_purpose::STANDARD, Engine};
+        let icon = super::application_icon(std::path::Path::new("/System/Library/CoreServices/Finder.app")).expect("macOS should resolve Finder's icon");
+        let bytes = STANDARD.decode(icon.strip_prefix("data:image/png;base64,").unwrap()).unwrap();
+        assert!(bytes.starts_with(b"\x89PNG\r\n\x1a\n"));
     }
 }

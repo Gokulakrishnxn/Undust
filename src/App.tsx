@@ -135,18 +135,21 @@ export default function App() {
       setApps([
         {
           id: "safari",
+          icon: "/art/apps/safari.svg",
           name: "Safari",
           bytes: 385000000,
           path: "Sample workspace/Applications/Safari.app",
         },
         {
           id: "code",
+          icon: "/art/apps/code.svg",
           name: "Visual Studio Code",
           bytes: 690000000,
           path: "Sample workspace/Applications/Visual Studio Code.app",
         },
         {
           id: "figma",
+          icon: "/art/apps/figma.svg",
           name: "Figma",
           bytes: 412000000,
           path: "Sample workspace/Applications/Figma.app",
@@ -996,8 +999,26 @@ export default function App() {
                       )
                       .map((app) => (
                         <div className="application-row" key={app.id}>
-                          <div className="application-symbol">
-                            <AppWindow size={24} />
+                          <div
+                            className={`application-symbol ${app.icon ? "has-icon" : ""}`}
+                          >
+                            {app.icon ? (
+                              <img
+                                src={app.icon}
+                                alt=""
+                                className="application-icon"
+                                onError={(event) => {
+                                  event.currentTarget.style.display = "none";
+                                  event.currentTarget.parentElement?.classList.remove(
+                                    "has-icon",
+                                  );
+                                }}
+                              />
+                            ) : null}
+                            <AppWindow
+                              size={24}
+                              className="application-fallback"
+                            />
                           </div>
                           <div>
                             <h3>{app.name}</h3>

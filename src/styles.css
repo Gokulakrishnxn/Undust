@@ -2090,3 +2090,16 @@ html[data-visible="false"] *:before {
   padding: 13px 25px;
   font-size: 13px;
 }
+
+.application-symbol.has-icon {
+  background: transparent;
+  border-color: transparent;
+}
+.application-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.application-symbol.has-icon .application-fallback {
+  display: none;
+}

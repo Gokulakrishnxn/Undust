@@ -25,6 +25,7 @@ export const storage = () =>
 export const openStartup = () => invoke("open_startup");
 
 export interface InstalledApp {
+  icon?: string | null;
   id: string;
   name: string;
   bytes: number;
